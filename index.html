@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contahora</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <pre> ▄   ▄▄▄▄                                                  
+ ▀██████▀             █▄       █▄                          
+   ██           ▄    ▄██▄      ██          ▄               
+   ██     ▄███▄ ████▄ ██ ▄▀▀█▄ ████▄ ▄███▄ ████▄▄▀▀█▄ ▄██▀█
+   ██     ██ ██ ██ ██ ██ ▄█▀██ ██ ██ ██ ██ ██   ▄█▀██ ▀███▄
+   ▀█████▄▀███▀▄██ ▀█▄██▄▀█▄██▄██ ██▄▀███▀▄█▀  ▄▀█▄███▄▄██▀</pre>
+    </header>
+
+    <form id="registro">
+        <label for="data">Data:</label>
+        <input type="date" id="data" required>
+        <label for="horas">Horas:</label>
+        <input type="text" id="horas" placeholder="Horas totais do dia" required>
+        <label for="texto">Anotações:</label>
+        <input type="text" placeholder="O que você fez no dia" id="texto">
+
+        <input type="submit" value="Registrar">
+    </form>
+
+    <div class="registros"></div>
+
+    <footer class="resumo"></footer>
+
+    <script src="script/script.js"></script>
+</body>
+</html>

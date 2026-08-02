@@ -53,13 +53,31 @@ function converterHorasDigitadas(valor) {
         return 0;
     }
 
-    if (texto.includes(',')) {
-        const [horasTexto, minutosTexto = ''] = texto.split(',');
+    if (texto.includes(':')) {
+        const [horasTexto, minutosTexto = '0'] = texto.split(':');
         const horas = Number.parseInt(horasTexto, 10) || 0;
-        const minutosBrutos = minutosTexto.replace(/\D/g, '');
-        const minutos = minutosBrutos ? Number.parseInt(minutosBrutos.padEnd(2, '0').slice(0, 2), 10) : 0;
+        const minutos = Number.parseInt(minutosTexto, 10) || 0;
 
         return horas + (minutos / 60);
+    }
+
+    if (texto.includes(',') || texto.includes('.')) {
+        const separador = texto.includes(',') ? ',' : '.';
+        const [horasTexto, parteFinal = ''] = texto.split(separador);
+        const horas = Number.parseInt(horasTexto, 10) || 0;
+        const parteLimpa = parteFinal.replace(/\D/g, '');
+
+        if (parteLimpa.length === 2) {
+            const minutos = Number.parseInt(parteLimpa, 10) || 0;
+
+            if (minutos <= 59) {
+                return horas + (minutos / 60);
+            }
+        }
+
+        const decimal = Number.parseFloat(`${horasTexto}.${parteLimpa}`);
+
+        return Number.isFinite(decimal) ? decimal : horas;
     }
 
     return Number.parseFloat(texto) || 0;
@@ -68,6 +86,10 @@ function converterHorasDigitadas(valor) {
 function formatarHoras(horas) {
     const horasInteiras = Math.floor(horas);
     const minutos = Math.round((horas - horasInteiras) * 60);
+
+    if (minutos === 60) {
+        return `${horasInteiras + 1} ${horasInteiras + 1 === 1 ? 'hora' : 'horas'}`;
+    }
 
     if (minutos === 0) {
         return `${horasInteiras} ${horasInteiras === 1 ? 'hora' : 'horas'}`;
@@ -107,6 +129,7 @@ form.addEventListener('submit', registrar);
 
 function mostrar() {
     const dados = JSON.parse(localStorage.getItem('dados')) || [];
+    const dadosOrdenados = [...dados].sort((a, b) => b.data.localeCompare(a.data));
 
     registros.innerHTML = "";
     rodapeResumo.innerHTML = "";
@@ -114,7 +137,7 @@ function mostrar() {
     let totalHoras = 0;
     const diasFeitos = new Set();
 
-    dados.forEach((registro, i) => {
+    dadosOrdenados.forEach((registro) => {
         const card = document.createElement('div');
         card.classList.add('card');
 
@@ -131,7 +154,7 @@ function mostrar() {
 
         const btn = card.querySelector('.btn-excluir');
         btn.addEventListener('click', () => {
-            excluir(i);
+            excluir(registro.id);
         });
 
         registros.appendChild(card);
@@ -146,12 +169,12 @@ function mostrar() {
     rodapeResumo.appendChild(resumo);
 }
 
-function excluir(i) {
+function excluir(id) {
     const dados = JSON.parse(localStorage.getItem('dados')) || [];
 
-    dados.splice(i, 1);
+    const dadosAtualizados = dados.filter((registro) => registro.id !== id);
 
-    localStorage.setItem('dados', JSON.stringify(dados));
+    localStorage.setItem('dados', JSON.stringify(dadosAtualizados));
     
     mostrar();
 }

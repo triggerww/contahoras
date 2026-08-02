@@ -1,6 +1,8 @@
 :root {
     --cor-principal: #6495ed;
     --cor-bordas: #e5e7eb;
+    --cor-fundo: #f8fafc;
+    --cor-texto: #111827;
 }
 
 @import url('//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.css');
@@ -13,29 +15,50 @@
 }
 
 body {
+    min-height: 100vh;
+    padding: 24px 16px 96px;
     text-align: center;
-    margin: auto;
+    margin: 0;
     font-family: Hack, monospace;
     -webkit-user-select: none;
     user-select: none;
     font-size: 18px;
-    margin-bottom: 5%;
+    line-height: 1.5;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 img {
-    margin: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 24px;
 }
 
 form {
-    margin-bottom: 2%;
+    width: 100%;
+    max-width: 680px;
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 8px 0 6px;
 }
 
 input {
-    padding: 5px;
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
     border: 2px solid var(--cor-bordas);
     border-radius: 5px;
     font-size: 18px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    background: white;
 }
 
 input:focus {
@@ -43,18 +66,32 @@ input:focus {
     border: 2px solid var(--cor-principal);
 }
 
+input[type="submit"] {
+    margin-top: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.registros {
+    width: 100%;
+    max-width: 680px;
+}
+
 .card {
-    width: 80%;
-    margin: auto;
-    padding: 5px;
+    width: 100%;
+    margin: 0 auto 12px;
+    padding: 14px 16px;
     border: 2px solid var(--cor-bordas);
-    margin-bottom: 5px;
+    border-radius: 10px;
+    background: white;
+    text-align: left;
 }
 
 .btn-excluir {
     color: red;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .btn-excluir:hover {
@@ -70,11 +107,12 @@ footer {
     bottom: 0;
     width: 100%;
     min-height: 35px;
-    padding: 5px;
+    padding: 10px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-top: 1px solid var(--cor-bordas);
 }
 
 footer .card {
@@ -86,31 +124,27 @@ footer .card {
 @media (max-width: 767px) {
     body {
         font-size: 16px;
+        padding: 16px 12px 84px;
     }
     
     img {
-        width: 90%;
-        margin: auto;
+        width: min(100%, 360px);
+        margin: 0 auto 20px;
     }
 
     form {
-        display: flex;
-        flex-direction: column;
-        width: 90%;
-        margin: auto;
-        margin-bottom: 10px;
+        margin-bottom: 18px;
     }
 
     .card {
-        display: flex;
-        flex-direction: column;
-        width: 90%;
-        margin: auto;
         margin-bottom: 10px;
-        height: auto;
     }
 
     .card p {
         overflow-wrap: break-word;
+    }
+
+    footer {
+        padding: 8px 12px;
     }
 }

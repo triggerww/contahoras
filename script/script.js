@@ -61,23 +61,26 @@ function converterHorasDigitadas(valor) {
         return horas + (minutos / 60);
     }
 
-    if (texto.includes(',') || texto.includes('.')) {
-        const separador = texto.includes(',') ? ',' : '.';
-        const [horasTexto, parteFinal = ''] = texto.split(separador);
+    if (texto.includes(',')) {
+        const [horasTexto, parteFinal = ''] = texto.split(',');
         const horas = Number.parseInt(horasTexto, 10) || 0;
         const parteLimpa = parteFinal.replace(/\D/g, '');
 
-        if (parteLimpa.length === 2) {
-            const minutos = Number.parseInt(parteLimpa, 10) || 0;
-
-            if (minutos <= 59) {
-                return horas + (minutos / 60);
-            }
+        if (!parteLimpa) {
+            return horas;
         }
 
-        const decimal = Number.parseFloat(`${horasTexto}.${parteLimpa}`);
+        const minutos = parteLimpa.length === 1
+            ? Number.parseInt(`${parteLimpa}0`, 10) || 0
+            : Number.parseInt(parteLimpa.slice(0, 2), 10) || 0;
 
-        return Number.isFinite(decimal) ? decimal : horas;
+        return horas + (Math.min(minutos, 59) / 60);
+    }
+
+    if (texto.includes('.')) {
+        const decimal = Number.parseFloat(texto);
+
+        return Number.isFinite(decimal) ? decimal : 0;
     }
 
     return Number.parseFloat(texto) || 0;

@@ -21,6 +21,10 @@ body {
     font-size: 18px;
 }
 
+img {
+    margin: auto;
+}
+
 form {
     margin-bottom: 2%;
 }
@@ -83,6 +87,7 @@ footer .card {
     
     img {
         width: 90%;
+        margin: auto;
     }
 
     form {

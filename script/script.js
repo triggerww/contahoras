@@ -176,7 +176,7 @@ function mostrar() {
     const resumo = document.createElement('div');
     resumo.classList.add('card');
     resumo.innerHTML = `
-        <p><strong>Total:</strong> ${formatarHoras(totalHoras)}, equivalente a ${formatarResumoHoras(totalHoras)}</p>
+        <p><strong>Total:</strong> ${formatarHoras(totalHoras)}</p>
     `;
 
     rodapeResumo.appendChild(resumo);

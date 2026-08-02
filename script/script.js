@@ -98,6 +98,15 @@ function formatarHoras(horas) {
     return `${horasInteiras} ${horasInteiras === 1 ? 'hora' : 'horas'} e ${minutos} ${minutos === 1 ? 'minuto' : 'minutos'}`;
 }
 
+function ordenarDadosPorDataDesc(dados) {
+    return [...dados].sort((a, b) => {
+        const dataA = new Date(`${a.data}T00:00:00`);
+        const dataB = new Date(`${b.data}T00:00:00`);
+
+        return dataB - dataA;
+    });
+}
+
 function preencherDataPadrao() {
     if (!campoData.value) {
         campoData.value = obterDataHoje();
@@ -116,8 +125,9 @@ function registrar(event) {
 
     const dados = JSON.parse(localStorage.getItem('dados')) || [];
     dados.push(registro);
+    const dadosOrdenados = ordenarDadosPorDataDesc(dados);
 
-    localStorage.setItem('dados', JSON.stringify(dados));
+    localStorage.setItem('dados', JSON.stringify(dadosOrdenados));
 
     form.reset();
     preencherDataPadrao();
@@ -129,7 +139,7 @@ form.addEventListener('submit', registrar);
 
 function mostrar() {
     const dados = JSON.parse(localStorage.getItem('dados')) || [];
-    const dadosOrdenados = [...dados].sort((a, b) => b.data.localeCompare(a.data));
+    const dadosOrdenados = ordenarDadosPorDataDesc(dados);
 
     registros.innerHTML = "";
     rodapeResumo.innerHTML = "";

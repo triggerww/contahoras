@@ -106,8 +106,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    min-height: 35px;
-    padding: 10px 16px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;

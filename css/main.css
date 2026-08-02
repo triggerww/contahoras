@@ -19,6 +19,7 @@ body {
     -webkit-user-select: none;
     user-select: none;
     font-size: 18px;
+    margin-bottom: 5%;
 }
 
 img {
@@ -63,6 +64,7 @@ input:focus {
 }
 
 footer {
+    background-color: white;
     position: fixed;
     left: 0;
     bottom: 0;

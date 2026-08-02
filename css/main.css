@@ -1,7 +1,6 @@
 :root {
     --cor-principal: #6495ed;
     --cor-bordas: #e5e7eb;
-    --cor-fundo: #f8fafc;
     --cor-texto: #111827;
 }
 
@@ -25,7 +24,7 @@ body {
     font-size: 18px;
     line-height: 1.5;
     color: var(--cor-texto);
-    background: var(--cor-fundo);
+    background: white;
     display: flex;
     flex-direction: column;
     align-items: center;

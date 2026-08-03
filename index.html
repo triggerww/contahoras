@@ -4,27 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contahora</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <img src="images/contahoras.png">
+        <pre>                                                           
+ ▄   ▄▄▄▄                                                  
+ ▀██████▀             █▄       █▄                          
+   ██           ▄    ▄██▄      ██          ▄               
+   ██     ▄███▄ ████▄ ██ ▄▀▀█▄ ████▄ ▄███▄ ████▄▄▀▀█▄ ▄██▀█
+   ██     ██ ██ ██ ██ ██ ▄█▀██ ██ ██ ██ ██ ██   ▄█▀██ ▀███▄
+   ▀█████▄▀███▀▄██ ▀█▄██▄▀█▄██▄██ ██▄▀███▀▄█▀  ▄▀█▄███▄▄██▀
+                                                           
+                                                           </pre>
     </header>
 
     <form id="registro">
         <label for="data">Data:</label>
         <input type="date" id="data" required>
         <label for="horas">Horas:</label>
-        <input type="text" id="horas" placeholder="Horas totais do dia" required>
+        <input type="text" id="horas" placeholder="Horas totais do dia" value="3,30" required>
         <label for="texto">Anotações:</label>
-        <input type="text" placeholder="O que você fez no dia" id="texto">
+        <input type="text" placeholder="Opcional" id="texto">
 
         <input type="submit" value="Registrar">
     </form>
 
-    <div class="registros"></div>
+    <section class="resumo"></section>
 
-    <footer class="resumo"></footer>
+    <div class="registros"></div>
 
     <script src="script/script.js"></script>
 </body>

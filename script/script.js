@@ -3,7 +3,7 @@ const campoData = document.getElementById('data');
 const campoHoras = document.getElementById('horas');
 const campoTexto = document.getElementById('texto');
 const registros = document.querySelector('.registros');
-const rodapeResumo = document.querySelector('footer.resumo');
+const resumo = document.querySelector('.resumo');
 
 function obterDataHoje() {
     const hoje = new Date();
@@ -145,7 +145,7 @@ function mostrar() {
     const dadosOrdenados = ordenarDadosPorDataDesc(dados);
 
     registros.innerHTML = "";
-    rodapeResumo.innerHTML = "";
+    resumo.innerHTML = "";
 
     let totalHoras = 0;
     const diasFeitos = new Set();
@@ -173,13 +173,13 @@ function mostrar() {
         registros.appendChild(card);
     });
 
-    const resumo = document.createElement('div');
-    resumo.classList.add('card');
-    resumo.innerHTML = `
+    const cardResumo = document.createElement('div');
+    cardResumo.classList.add('card');
+    cardResumo.innerHTML = `
         <p><strong>Total:</strong> ${formatarHoras(totalHoras)}</p>
     `;
 
-    rodapeResumo.appendChild(resumo);
+    resumo.appendChild(cardResumo);
 }
 
 function excluir(id) {

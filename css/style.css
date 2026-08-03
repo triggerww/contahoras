@@ -133,7 +133,6 @@ input[type="submit"]:active {
 }
 
 pre {
-    font-size: 10px;
     margin: 0 0 22px;
     font-family: Hack, monospace;
     font-size: clamp(7px, 1.15vw, 11px);
@@ -141,7 +140,9 @@ pre {
     white-space: pre;
     text-align: center;
     color: var(--cor-texto);
-    overflow: hidden;
+    display: inline-block;
+    width: max-content;
+    max-width: 100%;
 }
 
 @media (max-width: 767px) {
@@ -170,11 +171,13 @@ pre {
 
     pre {
         margin-bottom: 16px;
-        font-size: clamp(5px, 2.4vw, 8px);
+        font-size: 7px;
         line-height: 1;
-        overflow-x: auto;
-        overflow-y: hidden;
-        max-width: 100%;
+        transform: scale(0.88);
+        transform-origin: top center;
+        width: max-content;
+        max-width: none;
+        overflow: visible;
     }
 }
 

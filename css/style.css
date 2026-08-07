@@ -1,10 +1,21 @@
+@import url('//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.css');
+
 :root {
     --cor-principal: #6495ed;
     --cor-bordas: #e5e7eb;
     --cor-texto: #111827;
+    --raio: 8px;
+    --espacamento: 16px;
+    --sombra: 0 8px 18px rgba(100, 149, 237, 0.22);
+    --max-largura: 680px;
 }
 
-@import url('//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.css');
+@font-face {
+    font-family: "GregorianFLF";
+    src: url('../font/GregorianFLF.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html {
     -webkit-text-size-adjust: 100%;
@@ -19,20 +30,26 @@ html {
 
 body {
     min-height: 100dvh;
-    max-width: 100%;
+    width: 100%;
     padding: 24px 16px 32px;
     text-align: center;
-    margin: 0;
     font-family: Hack, monospace;
     -webkit-user-select: text;
     user-select: text;
     font-size: 16px;
     line-height: 1.5;
     color: var(--cor-texto);
-    background: white;
+    background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+h1 {
+    font-family: GregorianFLF, monospace;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
 img {
@@ -42,95 +59,71 @@ img {
     margin: 0 auto 24px;
 }
 
+/* Containers */
+.registros,
+.resumo,
 form {
     width: 100%;
-    max-width: 680px;
-    margin-bottom: 24px;
+    max-width: var(--max-largura);
 }
 
-label {
-    display: block;
-    text-align: left;
-    margin: 8px 0 6px;
-}
+.resumo { margin: 4px 0 18px; }
 
-input {
+/* Form */
+label { display: block; text-align: left; margin: 8px 0 6px; }
+
+input,
+textarea,
+button {
     display: block;
     width: 100%;
     padding: 12px 14px;
     border: 2px solid var(--cor-bordas);
-    border-radius: 5px;
+    border-radius: calc(var(--raio) - 2px);
     font-size: 18px;
     margin-bottom: 8px;
-    background: white;
+    background: #fff;
 }
 
-input:not([type="submit"]):focus-visible {
-    outline: none;
-    border: 2px solid var(--cor-principal);
-}
+input:not([type="submit"]):focus-visible { outline: none; border-color: var(--cor-principal); }
 
 input[type="submit"] {
     margin-top: 8px;
     cursor: pointer;
     font-weight: 700;
-    color: white;
+    color: #fff;
     background: var(--cor-principal);
     border-color: var(--cor-principal);
     -webkit-appearance: none;
     appearance: none;
     touch-action: manipulation;
     transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
-    box-shadow: 0 8px 18px rgba(100, 149, 237, 0.22);
+    box-shadow: var(--sombra);
 }
 
-input[type="submit"]:hover {
-    filter: brightness(1.03);
-}
+input[type="submit"]:hover { filter: brightness(1.03); }
+input[type="submit"]:focus { outline: none; border-color: var(--cor-principal); }
+input[type="submit"]:active { transform: translateY(1px) scale(0.98); box-shadow: 0 4px 10px rgba(100,149,237,0.18); }
 
-input[type="submit"]:focus {
-    outline: none;
-    border-color: var(--cor-principal);
-}
-
-input[type="submit"]:active {
-    transform: translateY(1px) scale(0.98);
-    box-shadow: 0 4px 10px rgba(100, 149, 237, 0.18);
-}
-
-.registros {
-    width: 100%;
-    max-width: 680px;
-}
-
-.resumo {
-    width: 100%;
-    max-width: 680px;
-    margin: 4px 0 18px;
-}
-
+/* Card */
 .card {
-    width: 80%;
-    margin: 0 auto 12px;
+    width: 100%;
+    margin-bottom: 12px;
     padding: 14px 16px;
     border: 2px solid var(--cor-bordas);
-    border-radius: 10px;
-    background: white;
+    border-radius: var(--raio);
+    background: #fff;
     text-align: left;
 }
 
 .btn-excluir {
     color: red;
-    display: flex;
-    justify-content: center;
+    display: inline-block;
+    text-align: center;
     margin-top: 10px;
 }
 
-.btn-excluir:hover {
-    color: red;
-    text-decoration: underline;
-    cursor: pointer;
-}
+.btn-excluir:hover { text-decoration: underline; cursor: pointer; }
 
 pre {
     margin: 0 0 22px;
@@ -146,94 +139,23 @@ pre {
 }
 
 @media (max-width: 767px) {
-    body {
-        font-size: 16px;
-        padding: 16px 12px 24px;
-    }
-    
-    img {
-        width: min(100%, 360px);
-        margin: 0 auto 20px;
-    }
-
-    form {
-        margin-bottom: 18px;
-    }
-
-    .card {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .card p {
-        overflow-wrap: break-word;
-    }
-
-    pre {
-        margin-bottom: 16px;
-        font-size: 7px;
-        line-height: 1;
-        transform: scale(0.88);
-        transform-origin: top center;
-        width: max-content;
-        max-width: none;
-        overflow: visible;
-    }
+    body { font-size: 16px; padding: 16px 12px 24px; }
+    img { width: min(100%, 360px); margin: 0 auto 20px; }
+    form { margin-bottom: 18px; }
+    .card { margin-bottom: 10px; }
+    .card p { overflow-wrap: break-word; }
+    pre { margin-bottom: 16px; font-size: 7px; line-height: 1; transform: scale(0.88); transform-origin: top center; width: max-content; max-width: none; overflow: visible; }
 }
 
 @media (min-width: 768px) {
-    form {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
-        gap: 0 12px;
-        align-items: end;
-    }
-
-    form label {
-        margin: 0 0 6px;
-    }
-
-    form input {
-        margin-bottom: 0;
-    }
-
-    form label:nth-of-type(1),
-    form input:nth-of-type(1) {
-        grid-column: 1;
-    }
-
-    form label:nth-of-type(2),
-    form input:nth-of-type(2) {
-        grid-column: 2;
-    }
-
-    form label:nth-of-type(3),
-    form input:nth-of-type(3) {
-        grid-column: 3;
-    }
-
-    form label:nth-of-type(1),
-    form label:nth-of-type(2),
-    form label:nth-of-type(3) {
-        grid-row: 1;
-    }
-
-    form input:nth-of-type(1),
-    form input:nth-of-type(2),
-    form input:nth-of-type(3) {
-        grid-row: 2;
-    }
-
-    form input[type="submit"] {
-        grid-column: 4;
-        grid-row: 2;
-        min-width: 140px;
-        margin-top: 0;
-        height: 100%;
-    }
-
-    .resumo,
-    .registros {
-        max-width: 100%;
-    }
+    form { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 0 12px; align-items: end; }
+    form label { margin: 0 0 6px; }
+    form input { margin-bottom: 0; }
+    form label:nth-of-type(1), form input:nth-of-type(1) { grid-column: 1; }
+    form label:nth-of-type(2), form input:nth-of-type(2) { grid-column: 2; }
+    form label:nth-of-type(3), form input:nth-of-type(3) { grid-column: 3; }
+    form label:nth-of-type(1), form label:nth-of-type(2), form label:nth-of-type(3) { grid-row: 1; }
+    form input:nth-of-type(1), form input:nth-of-type(2), form input:nth-of-type(3) { grid-row: 2; }
+    form input[type="submit"] { grid-column: 4; grid-row: 2; min-width: 140px; margin-top: 0; height: 100%; }
+    .resumo, .registros { max-width: 100%; }
 }
